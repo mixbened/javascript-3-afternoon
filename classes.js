@@ -112,22 +112,22 @@ class ProgressiveManager{
     this.bonus = 0;
     }
     hire(employee){
-      return this.reports.push(employee);
+      this.reports.push(employee);
       if(this.reports.length > 100){
-        return this.title = 'Bestest Manager';
+        this.title = 'Bestest Manager';
       } else if (this.reports.length > 50){
-        return this.title = 'Manager Plus';
+        this.title = 'Manager Plus';
       } else if (this.reports.length > 10){
-        return this.title = 'Manager';
+        this.title = 'Manager';
       } else if (this.reports.length > 3){
-        return this.title = 'Barely Manager';
-      } else {
-        return this.title = 'Not a manager';
+        this.title = 'Mostly Manager';  
+      } else if (this.reports.length <= 3){
+        this.title = 'Barely Manager';
       }
     }
     fire(index){
-      return this.reports.splice(index,1);
-      return this.bonus += 100;      
+      this.reports.splice(index,1);
+      this.bonus += 100;      
     }
 }
 
@@ -167,11 +167,12 @@ class Machine {
     this.wear_and_tear_count += (num/50)*1;
   }
   fixMachine(){
-    return this.needs_robot = true;
+    this.needs_reboot = true;
   }
   reboot(){
-      () => {
-      return this.wear_and_tear_count += 10;
+      return () => {
+      this.wear_and_tear_count -= 10;
+      this.needs_reboot = false;
     }
   }
 }
